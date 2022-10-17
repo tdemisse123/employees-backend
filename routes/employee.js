@@ -1,25 +1,25 @@
 const router = require('express').Router()
 const Employee = require('../model/employee')
-const multer = require('multer');
+//const multer = require('multer');
 
 
-const storage = multer.diskStorage({
-  destination: function(req, file, cb){
-    cb(null, './uploads/');
-  },
-  filename: function(req, file,cb){
-    cb(null, new Date().toISOString() + file.originalname)
-  }
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb){
+//     cb(null, './uploads/');
+//   },
+//   filename: function(req, file,cb){
+//     cb(null, new Date().toISOString() + file.originalname)
+//   }
 
-})
-const upload = multer({storage: storage})
+// })
+// const upload = multer({storage: storage})
 
 
 /* ADD EMPLOYEE */
 
-router.post("/addemployee", upload.single('employeeImage'), async(req, res) =>{
+router.post("/addemployee", async(req, res) =>{
     const newEmployee = new Employee({
-        //image: req.body.image,
+        image: req.body.image,
         name: req.body.name,
         position: req.body.position,
         officePhone: req.body.officePhone,
